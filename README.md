@@ -1,6 +1,15 @@
-# io-chart ◈
+# Interactive Chart Viewer
 
 > A reusable Angular chart component that renders **Line**, **Column**, and **Pie** charts from a single configuration object — with **no external chart libraries**.
+
+---
+
+## ✦ Screenshots
+
+<img width="1919" height="880" alt="image" src="https://github.com/user-attachments/assets/5567c30d-dba3-4969-b58c-66e5731b9564" />
+<img width="1898" height="881" alt="image" src="https://github.com/user-attachments/assets/7b880757-bf85-4ab3-9bd5-d3c19c91cbac" />
+<img width="1900" height="877" alt="image" src="https://github.com/user-attachments/assets/4d00da68-0f5f-4e53-8f57-9d18ad3199bc" />
+<img width="1899" height="875" alt="image" src="https://github.com/user-attachments/assets/1260b4fd-5b56-4f8b-a26e-435401dfc0cf" />
 
 ---
 
@@ -130,19 +139,6 @@ Each chart re-triggers a `requestAnimationFrame` loop on input change. Progress 
 
 ### Hover system
 Mouse coordinates are compared in logical CSS pixel space (not scaled canvas pixels). Pie uses polar coordinates (`Math.atan2`) to find the hovered slice. Bars use bounding-box checks. Line uses proximity radius checks on each point.
-
----
-
-## ✦ Evaluation Checklist
-
-| Criterion | Implementation |
-|-----------|----------------|
-| **Angular Usage (20)** | `@Input`, `@ViewChild`, `@HostListener`, `OnChanges`, `AfterViewInit`, `NgModule`, `*ngFor`, `*ngIf`, property binding, event binding |
-| **Chart Logic (25)** | Grid lines, axes, area fill, smooth curves, rounded bars, donut hole, % labels, value labels, animated progress draw |
-| **Reusability (20)** | Single `<io-chart>` component, fully driven by `ChartOptions` interface, no hardcoded data |
-| **UI / CSS (15)** | White theme, Sora + DM Mono fonts, HiDPI canvas, info panel, staggered All-view animations |
-| **Code Quality (10)** | TypeScript interfaces, typed inputs, extracted constants (`THEME`, `PAD`), no magic numbers, `devicePixelRatio` handling |
-| **Documentation (10)** | This README + inline code comments explaining non-obvious logic |
 
 ---
 
