@@ -1,0 +1,42 @@
+<div class="chart-wrapper">
+
+  <!-- Header -->
+  <div class="chart-header">
+    <span class="chart-type-badge">{{ chartOptions.type | uppercase }}</span>
+    <h2 class="chart-title">{{ chartOptions.title }}</h2>
+  </div>
+
+  <!-- Canvas -->
+  <div class="canvas-container">
+    <canvas
+      #canvas
+      (mousemove)="onMouseMove($event)"
+      (mouseleave)="onMouseLeave()"
+    ></canvas>
+
+    <!-- Tooltip -->
+    <div
+      class="tooltip"
+      [class.visible]="showTooltip"
+      [style.left.px]="tooltipX"
+      [style.top.px]="tooltipY"
+    >
+      <span class="tooltip-label">{{ tooltipLabel }}</span>
+      <span class="tooltip-value">{{ tooltipValue }}</span>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div
+      class="legend-item"
+      *ngFor="let s of chartOptions?.series; let i = index"
+      [class.active]="hoveredIndex === i"
+    >
+      <span class="legend-dot" [style.background]="s.color"></span>
+      <span class="legend-name">{{ s.name }}</span>
+      <span class="legend-val">{{ s.value }}</span>
+    </div>
+  </div>
+
+</div>

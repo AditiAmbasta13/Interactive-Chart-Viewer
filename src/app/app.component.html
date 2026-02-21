@@ -1,0 +1,76 @@
+<div class="app">
+  <h3 class="name-fixed" >Aditi Ambasta</h3>
+  <header class="app-header">
+    <h1 class="app-heading">Interactive Chart Viewer</h1>
+    <p class="app-subtitle">A zero-dependency Angular chart component — Line, Column & Pie</p>
+  </header>
+
+  <main class="app-main">
+
+    <!-- Tab Switcher -->
+    <div class="switcher">
+      <button
+        *ngFor="let tab of tabs"
+        class="switch-btn"
+        [class.active]="activeTab === tab"
+        [class.all-btn]="tab === 'all'"
+        (click)="setTab(tab)"
+      >
+        {{ tabLabels[tab] }}
+      </button>
+    </div>
+
+    <!-- ── ALL VIEW ─────────────────────────────────────── -->
+    <div class="all-grid" *ngIf="activeTab === 'all'">
+      <div class="chart-card mini">
+        <io-chart [chartOptions]="lineOptions"></io-chart>
+      </div>
+      <div class="chart-card mini">
+        <io-chart [chartOptions]="columnOptions"></io-chart>
+      </div>
+      <div class="chart-card mini">
+        <io-chart [chartOptions]="pieOptions"></io-chart>
+      </div>
+    </div>
+
+    <!-- ── SINGLE VIEW (chart + info panel) ─────────────── -->
+    <div class="single-view" *ngIf="activeTab !== 'all'">
+
+      <!-- Chart -->
+      <div class="chart-card full">
+        <io-chart
+          [chartOptions]="activeTab === 'line' ? lineOptions : activeTab === 'column' ? columnOptions : pieOptions"
+        ></io-chart>
+      </div>
+
+      <!-- Info Panel -->
+      <div class="info-panel">
+        <span class="info-eyebrow">{{ activeInfo.eyebrow }}</span>
+        <h3 class="info-heading">{{ activeInfo.heading }}</h3>
+        <p class="info-desc">{{ activeInfo.desc }}</p>
+
+        <div class="info-divider"></div>
+
+        <!-- Stats -->
+        <div class="info-stats">
+          <div class="stat-row" *ngFor="let stat of activeInfo.stats">
+            <span class="stat-label">{{ stat.label }}</span>
+            <span class="stat-value">{{ stat.value }}</span>
+          </div>
+        </div>
+
+        <!-- Use cases -->
+        <div class="info-use-cases">
+          <p class="use-case-label">Best used for</p>
+          <div class="use-case-item" *ngFor="let u of activeInfo.useCases">
+            <span class="use-case-dot"></span>
+            <span>{{ u }}</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+</div>

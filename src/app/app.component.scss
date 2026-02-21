@@ -1,0 +1,165 @@
+// ── App Shell ─────────────────────────────────────────────
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 24px 64px;
+  background:
+    radial-gradient(ellipse 70% 30% at 50% -5%, rgba(99,102,241,0.14) 0%, transparent 55%),
+    var(--bg);
+}
+
+// ── Header ────────────────────────────────────────────────
+.app-header { text-align: center; margin-bottom: 40px; }
+
+.name-fixed{
+  position: fixed; top: 25px; right: 0px; transform: translateX(-50%);
+  font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-sub); opacity: 0.5;
+  pointer-events: none; user-select: none;
+}
+
+.logo {
+  display: flex; align-items: center;
+  justify-content: center; gap: 10px; margin-bottom: 8px;
+}
+
+.logo-icon {
+  color: var(--accent); font-size: 22px; display: inline-block;
+  animation: spin 8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.logo-text { font-size: 26px; font-weight: 700; letter-spacing: -0.03em; color: var(--text); }
+.logo-accent { color: var(--accent); }
+
+.app-heading {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  line-height: 1.2;
+  margin-top: 14px;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(99,102,241,0.85) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app-subtitle {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-sub);
+}
+
+// ── Main ──────────────────────────────────────────────────
+.app-main { width: 100%; max-width: 1300px; display: flex; flex-direction: column; gap: 20px; }
+
+// ── Tab Switcher ──────────────────────────────────────────
+.switcher {
+  display: flex; gap: 4px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 5px; width: fit-content;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.3);
+}
+
+.switch-btn {
+  display: flex; align-items: center; gap: 7px;
+  padding: 8px 20px; border: none; border-radius: 8px;
+  background: transparent; color: var(--text-sub);
+  font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s ease;
+
+  &:hover { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.06); }
+  &.active { background: var(--accent); color: #fff; box-shadow: 0 3px 14px rgba(99,102,241,0.4); }
+  &.all-btn.active {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    box-shadow: 0 3px 14px rgba(168,85,247,0.35);
+  }
+}
+
+// ── Chart card wrapper ────────────────────────────────────
+.chart-card {
+  border-radius: 16px; overflow: hidden;
+  animation: fadeUp 0.35s ease;
+  &.full { min-height: 400px; }
+  &.mini { height: 420px; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ── All View Grid ─────────────────────────────────────────
+.all-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+// ── Single View Split ─────────────────────────────────────
+.single-view {
+  display: grid;
+  grid-template-columns: 1fr 540px;
+  gap: 16px;
+  align-items: stretch;
+
+  @media (max-width: 780px) { grid-template-columns: 1fr; }
+}
+
+// ── Info Panel ────────────────────────────────────────────
+.info-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.3);
+  display: flex; flex-direction: column; gap: 14px;
+  animation: fadeUp 0.4s ease 0.1s both;
+}
+
+.info-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent);
+  background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.25);
+  padding: 3px 9px; border-radius: 4px; width: fit-content;
+}
+
+.info-heading { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; line-height: 1.25; }
+.info-desc    { font-size: 12.5px; line-height: 1.65; color: rgba(255,255,255,0.42); }
+.info-divider { height: 1px; background: var(--border); }
+
+.info-stats   { display: flex; flex-direction: column; gap: 10px; }
+.stat-row     { display: flex; align-items: center; justify-content: space-between; }
+.stat-label   { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-sub); letter-spacing: 0.04em; }
+.stat-value   { font-size: 13px; font-weight: 700; color: var(--text); }
+
+.info-use-cases { display: flex; flex-direction: column; gap: 7px; }
+.use-case-label {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-sub); margin-bottom: 2px;
+}
+.use-case-item {
+  display: flex; align-items: flex-start; gap: 9px;
+  font-size: 12.5px; color: rgba(255,255,255,0.42); line-height: 1.5;
+}
+.use-case-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0; margin-top: 6px;
+}
+
+// ── Code Block ────────────────────────────────────────────
+.code-block {
+  position: relative; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 10px; padding: 14px 20px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.3);
+}
+.code-label {
+  position: absolute; top: 0; left: 16px; transform: translateY(-50%);
+  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em;
+  color: var(--accent); background: var(--bg); padding: 0 6px;
+}
+pre code { font-family: 'DM Mono', monospace; font-size: 13px; color: rgba(255,255,255,0.35); }
